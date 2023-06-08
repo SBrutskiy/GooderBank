@@ -109,7 +109,9 @@ function NavBar() {
                   AllData
                 </a>
               </li>
-              <li className="nav-item">Hello {ctx.selectedUser.name}</li>
+              <li className="navbar-brand mr-sm-2">
+                Hello {ctx.selectedUser.name}
+              </li>
             </ul>
           </div>
         </nav>

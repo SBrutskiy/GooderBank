@@ -53,37 +53,3 @@ function Login() {
     />
   );
 }
-depositMessage == false ? (
-  <div className="card">
-    <div className="card-body">
-      <h5 className="card-title">Balance: {ctx.selectedUser.balance}</h5>
-
-      <h5 className="card-title">Deposit</h5>
-      <p className="card-text">To deposit funds type amount below and submit</p>
-      <input
-        type="text"
-        placeholder="Deposit Amount"
-        value={amount}
-        onChange={() => setAmount(event.target.value)}
-      />
-      <button
-        disabled={!hasInput}
-        className="btn btn-primary"
-        onClick={handleDeposit}
-      >
-        {" "}
-        Deposit{" "}
-      </button>
-    </div>
-  </div>
-) : (
-  <>
-    <div className="alert alert-success" role="alert">
-      Successfully deposited!
-    </div>
-    <button className="btn btn-primary" onClick={depositAgain}>
-      {" "}
-      Deposit More?{" "}
-    </button>
-  </>
-);
