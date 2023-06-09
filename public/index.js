@@ -6,19 +6,20 @@ function Spa() {
 
   React.useEffect(() => {
     if (selectedUser) {
-      localStorage.setItem("userId", selectedUser.id);
+      localStorage.setItem("userId", selectedUser._id);
     }
   }, [selectedUser]);
 
   React.useEffect(() => {
     async function getUser() {
       const userId = localStorage.getItem("userId");
-
       if (userId) {
         const res = await fetch(`/account/getUser/${userId}`);
         const data = await res.json();
-        if (data) {
+        if (data && data._id) {
           setSelectedUser(data);
+        } else {
+          localStorage.removeItem("userId");
         }
       }
     }
@@ -53,7 +54,7 @@ function Spa() {
   }
   async function handleDeposit(depositAmount) {
     const res = await fetch(
-      `/account/deposit/${selectedUser.id}/${depositAmount}/`
+      `/account/deposit/${selectedUser._id}/${depositAmount}/`
     );
     const data = await res.json();
     setSelectedUser(data);
@@ -61,7 +62,7 @@ function Spa() {
 
   async function handleWithdraw(withdrawAmount) {
     const res = await fetch(
-      `/account/withdraw/${selectedUser.id}/${withdrawAmount}/`
+      `/account/withdraw/${selectedUser._id}/${withdrawAmount}/`
     );
     const data = await res.json();
     setSelectedUser(data);

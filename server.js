@@ -8,8 +8,8 @@ async function main() {
   app.use(express.static("public"));
   app.use(cors());
 
-  app.get("/account/create/:name/:email/:password", function (req, res) {
-    newUser = model.addUser({
+  app.get("/account/create/:name/:email/:password", async function (req, res) {
+    const newUser = await model.addUser({
       name: req.params.name,
       email: req.params.email,
       password: req.params.password,
@@ -19,35 +19,39 @@ async function main() {
     res.send(newUser);
   });
 
-  app.get("/account/login/:email/:password", function (req, res) {
+  app.get("/account/login/:email/:password", async function (req, res) {
     const userEmail = req.params.email;
     const userPassword = req.params.password;
 
-    res.send({ user: model.handleLogin(userEmail, userPassword) });
+    res.send({ user: await model.handleLogin(userEmail, userPassword) });
   });
 
-  app.get("/account/getUser/:userId", function (req, res) {
+  app.get("/account/getUser/:userId", async function (req, res) {
     const userId = req.params.userId;
-
-    res.send(model.getUserById(userId));
+    const user = await model.getUserById(userId);
+    res.send(user);
   });
 
-  app.get("/account/deposit/:userId/:depositAmount", function (req, res) {
+  app.get("/account/deposit/:userId/:depositAmount", async function (req, res) {
     const userId = req.params.userId;
     const depositAmount = req.params.depositAmount;
-    model.depositMoney(userId, depositAmount);
-    res.send(model.getUserById(userId));
+    await model.depositMoney(userId, depositAmount);
+    res.send(await model.getUserById(userId));
   });
 
-  app.get("/account/withdraw/:userId/:withdrawAmount", function (req, res) {
-    const userId = req.params.userId;
-    const withdrawAmount = req.params.withdrawAmount;
-    model.withdrawMoney(userId, withdrawAmount);
-    res.send(model.getUserById(userId));
-  });
+  app.get(
+    "/account/withdraw/:userId/:withdrawAmount",
+    async function (req, res) {
+      const userId = req.params.userId;
+      const withdrawAmount = req.params.withdrawAmount;
+      await model.withdrawMoney(userId, withdrawAmount);
+      const user = await model.getUserById(userId);
+      res.send(user);
+    }
+  );
 
-  app.get("/account/all", function (req, res) {
-    model.getAllUsers();
+  app.get("/account/all", async function (req, res) {
+    res.send(await model.getAllUsers());
   });
 
   const port = 3000;
