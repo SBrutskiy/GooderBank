@@ -5,7 +5,6 @@ const { buildModel } = require("./model.js");
 
 async function main() {
   const model = await buildModel();
-  app.use(express.static("public"));
   app.use(cors());
 
   app.get("/account/create/:name/:email/:password", async function (req, res) {

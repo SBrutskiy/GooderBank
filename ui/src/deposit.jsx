@@ -1,4 +1,7 @@
-function Deposit() {
+import React from "react";
+import { UserContext } from "./context";
+
+export function Deposit() {
   const ctx = React.useContext(UserContext);
   const [amount, setAmount] = React.useState(0);
   const [depositMessage, setDepositMessage] = React.useState(false);

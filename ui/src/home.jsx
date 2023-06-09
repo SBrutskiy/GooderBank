@@ -1,4 +1,7 @@
-function Home() {
+import React from "react";
+import { Card } from "./context";
+
+export function Home() {
   return (
     <Card
       txtcolor="black"

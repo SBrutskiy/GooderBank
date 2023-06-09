@@ -1,4 +1,7 @@
-function Withdraw() {
+import React from "react";
+import { UserContext } from "./context";
+
+export function Withdraw() {
   const ctx = React.useContext(UserContext);
   const [withdrawAmount, setWithdrawAmount] = React.useState(0);
   const [thxsMessage, setThxsMessage] = React.useState(false);

@@ -1,4 +1,7 @@
-function Login() {
+import React from "react";
+import { UserContext } from "./context";
+
+export function Login() {
   const [show, setShow] = React.useState(true);
   const [status, setStatus] = React.useState("");
   const [email, setEmail] = React.useState("");

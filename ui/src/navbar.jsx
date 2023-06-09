@@ -1,4 +1,7 @@
-function NavBar() {
+import React from "react";
+import { UserContext } from "./context";
+
+export function NavBar() {
   const ctx = React.useContext(UserContext);
   if (!ctx.selectedUser) {
     return (

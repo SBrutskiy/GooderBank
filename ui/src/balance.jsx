@@ -1,4 +1,7 @@
-function Balance() {
+import React from "react";
+import { UserContext } from "./context";
+
+export function Balance() {
   const ctx = React.useContext(UserContext);
   if (ctx.selectedUser == null) {
     return <div>You have to login</div>;
