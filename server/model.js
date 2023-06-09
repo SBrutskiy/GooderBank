@@ -2,6 +2,7 @@ const { MongoClient, ObjectId, ServerApiVersion } = require("mongodb");
 require("dotenv/config");
 // Connection URL
 const url = process.env.DATABASE_URL || "mongodb://localhost:27017";
+console.log(url);
 // const client = new MongoClient(url);
 const client = new MongoClient(url, {
   serverApi: {
