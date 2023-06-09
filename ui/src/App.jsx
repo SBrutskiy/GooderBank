@@ -42,7 +42,7 @@ function App() {
     async function getUser() {
       const userId = localStorage.getItem("userId");
       if (userId) {
-        const res = await fetch(`/account/getUser/${userId}`);
+        const res = await fetch(`/api/account/getUser/${userId}`);
         const data = await res.json();
         if (data && data._id) {
           setSelectedUser(data);
@@ -56,7 +56,7 @@ function App() {
 
   // React.useEffect(() => {
   //   async function getData() {
-  //     const res = await fetch("/account/all");
+  //     const res = await fetch("/api/account/all");
   //     const data = await res.json();
 
   //     setAllUsers(data);
@@ -66,7 +66,7 @@ function App() {
 
   async function handleAddUser(user) {
     const res = await fetch(
-      `/account/create/${user.name}/${user.email}/${user.password}`
+      `/api/account/create/${user.name}/${user.email}/${user.password}`
     );
     const data = await res.json();
 
@@ -74,7 +74,9 @@ function App() {
   }
 
   async function handleLogin(user) {
-    const res = await fetch(`/account/login/${user.email}/${user.password}`);
+    const res = await fetch(
+      `/api/account/login/${user.email}/${user.password}`
+    );
     const data = await res.json();
     if (data.user) {
       return setSelectedUser(data.user);
@@ -82,7 +84,7 @@ function App() {
   }
   async function handleDeposit(depositAmount) {
     const res = await fetch(
-      `/account/deposit/${selectedUser._id}/${depositAmount}/`
+      `/api/account/deposit/${selectedUser._id}/${depositAmount}/`
     );
     const data = await res.json();
     setSelectedUser(data);
@@ -90,7 +92,7 @@ function App() {
 
   async function handleWithdraw(withdrawAmount) {
     const res = await fetch(
-      `/account/withdraw/${selectedUser._id}/${withdrawAmount}/`
+      `/api/account/withdraw/${selectedUser._id}/${withdrawAmount}/`
     );
     const data = await res.json();
     setSelectedUser(data);
