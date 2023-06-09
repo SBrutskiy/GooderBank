@@ -5,9 +5,26 @@ import { Login } from "./login";
 import { Deposit } from "./deposit";
 import { Withdraw } from "./withdraw";
 import { Balance } from "./balance";
-import { HashRouter, Route } from "react-router-dom";
+import {
+  Route,
+  BrowserRouter as Router,
+  Switch,
+  useLocation,
+} from "react-router-dom";
 import { UserContext } from "./context";
 import { NavBar } from "./navbar";
+
+function NoMatch() {
+  const location = useLocation();
+
+  return (
+    <div>
+      <h3>
+        No match for <code>{location.pathname}</code>
+      </h3>
+    </div>
+  );
+}
 
 function App() {
   const [selectedUserIndex, setSelectedUserIndex] = React.useState(null);
@@ -80,30 +97,48 @@ function App() {
   }
 
   return (
-    <HashRouter>
-      <UserContext.Provider
-        value={{
-          transactions: transactions,
-          // users: allUsers,
-          selectedUser,
-          handleAddUser,
-          handleDeposit,
-          handleWithdraw,
-          handleLogin,
-        }}
-      >
+    <UserContext.Provider
+      value={{
+        transactions: transactions,
+        // users: allUsers,
+        selectedUser,
+        handleAddUser,
+        handleDeposit,
+        handleWithdraw,
+        handleLogin,
+      }}
+    >
+      <Router>
         <NavBar />
         <div className="container" style={{ padding: "20px" }}>
-          <Route path="/" exact component={Home} />
-          <Route path="/CreateAccount/" component={CreateAccount} />
-          <Route path="/login/" component={Login} />
-          <Route path="/deposit/" component={Deposit} />
-          <Route path="/withdraw/" component={Withdraw} />
-          <Route path="/balance/" component={Balance} />
-          {/* <Route path="/alldata/" component={AllData} /> */}
+          <Switch>
+            {/* <Route path="/CreateAccount">
+              <CreateAccount />
+            </Route> */}
+            <Route path="/CreateAccount" component={CreateAccount} />
+            <Route path="/login">
+              <Login />
+            </Route>
+            <Route path="/deposit">
+              <Deposit />
+            </Route>
+            <Route path="/withdraw">
+              <Withdraw />
+            </Route>
+            <Route path="/balance">
+              <Balance />
+            </Route>
+            {/* <Route   path="/alldata" > <AllData /> */}
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="*">
+              <NoMatch />
+            </Route>
+          </Switch>
         </div>
-      </UserContext.Provider>
-    </HashRouter>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { UserContext } from "./context";
+import { Link } from "react-router-dom";
 
 export function NavBar() {
   const ctx = React.useContext(UserContext);
@@ -7,14 +8,14 @@ export function NavBar() {
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="">
             Gooder Bank
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarNav"
+            data-target="navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
@@ -24,18 +25,18 @@ export function NavBar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a
+                <Link
+                  to="/CreateAccount"
                   title="Use this page to create an account"
                   className="nav-link"
-                  href="#/CreateAccount/"
                 >
                   Create Account
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/login/">
+                <Link className="nav-link" to="/login">
                   Login
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -46,14 +47,14 @@ export function NavBar() {
     return (
       <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">
+          <Link className="navbar-brand" to="">
             Gooder Bank
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
             data-toggle="collapse"
-            data-target="#navbarNav"
+            data-target="navbarNav"
             aria-controls="navbarNav"
             aria-expanded="false"
             aria-label="Toggle navigation"
@@ -63,54 +64,54 @@ export function NavBar() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a
+                <Link
                   title="Use this page to create an account"
                   className="nav-link"
-                  href="#/CreateAccount/"
+                  to="/CreateAccount"
                 >
                   Create Account
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/login/">
+                <Link className="nav-link" to="/login">
                   Login
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <Link
                   title="Use this page to deposit money"
                   className="nav-link"
-                  href="#/deposit/"
+                  to="/deposit"
                 >
                   Deposit
-                </a>
+                </Link>
               </li>
               <li className="nav-item">
-                <a
+                <Link
                   title="Use this page to withdraw money"
                   className="nav-link"
-                  href="#/withdraw/"
+                  to="/withdraw"
                 >
                   Withdraw
-                </a>
+                </Link>
               </li>
               {/* <li className="nav-item">
-              <a
+              <Link
                 title="Use this page to check balance"
                 className="nav-link"
-                href="#/balance/"
+                to="/balance"
               >
                 Balance
-              </a>
+              </Link>
             </li> */}
               <li className="nav-item">
-                <a
+                <Link
                   title="Use this page to see all the accounts"
                   className="nav-link"
-                  href="#/alldata/"
+                  to="/alldata"
                 >
                   AllData
-                </a>
+                </Link>
               </li>
               <li className="navbar-brand mr-sm-2">
                 Hello {ctx.selectedUser.name}
