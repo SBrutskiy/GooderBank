@@ -60,6 +60,6 @@ async function main() {
   });
 
   app.listen(process.env.port || 3000);
-  console.log(`running on port: ${port}`);
+  console.log(`running on port: `);
 }
 main();
