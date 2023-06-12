@@ -14,6 +14,12 @@ import {
 import { UserContext } from "./context";
 import { NavBar } from "./navbar";
 
+async function fetchHelper(path) {
+  const res = await fetch(`${import.meta.env.VITE_API_ORIGIN || ""}${path}`);
+  const data = await res.json();
+  return data;
+}
+
 function NoMatch() {
   const location = useLocation();
 
@@ -42,8 +48,7 @@ function App() {
     async function getUser() {
       const userId = localStorage.getItem("userId");
       if (userId) {
-        const res = await fetch(`/api/account/getUser/${userId}`);
-        const data = await res.json();
+        const data = await fetchHelper(`/api/account/getUser/${userId}`);
         if (data && data._id) {
           setSelectedUser(data);
         } else {
@@ -54,47 +59,33 @@ function App() {
     getUser();
   }, []);
 
-  // React.useEffect(() => {
-  //   async function getData() {
-  //     const res = await fetch("/api/account/all");
-  //     const data = await res.json();
-
-  //     setAllUsers(data);
-  //   }
-  //   getData();
-  // }, []);
-
   async function handleAddUser(user) {
-    const res = await fetch(
+    const data = await fetchHelper(
       `/api/account/create/${user.name}/${user.email}/${user.password}`
     );
-    const data = await res.json();
 
     setSelectedUser(data);
   }
 
   async function handleLogin(user) {
-    const res = await fetch(
+    const data = await fetchHelper(
       `/api/account/login/${user.email}/${user.password}`
     );
-    const data = await res.json();
     if (data.user) {
       return setSelectedUser(data.user);
     } else return alert("username or password are incorrect ");
   }
   async function handleDeposit(depositAmount) {
-    const res = await fetch(
+    const data = await fetchHelper(
       `/api/account/deposit/${selectedUser._id}/${depositAmount}/`
     );
-    const data = await res.json();
     setSelectedUser(data);
   }
 
   async function handleWithdraw(withdrawAmount) {
-    const res = await fetch(
+    const data = await fetchHelper(
       `/api/account/withdraw/${selectedUser._id}/${withdrawAmount}/`
     );
-    const data = await res.json();
     setSelectedUser(data);
   }
 
