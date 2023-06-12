@@ -62,7 +62,7 @@ export function NavBar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+            <ul className="navbar-nav" style={{ width: "100%" }}>
               <li className="nav-item">
                 <Link
                   title="Use this page to create an account"
@@ -113,7 +113,10 @@ export function NavBar() {
                   AllData
                 </Link>
               </li>
-              <li className="navbar-brand mr-sm-2">
+              <li
+                className="navbar-brand mr-sm-2"
+                style={{ marginLeft: "auto", marginRight: "10px" }}
+              >
                 Hello {ctx.selectedUser.name}
               </li>
             </ul>
