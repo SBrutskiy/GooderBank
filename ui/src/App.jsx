@@ -13,9 +13,10 @@ import {
 } from "react-router-dom";
 import { UserContext } from "./context";
 import { NavBar } from "./navbar";
-
+const apiHost = import.meta.env.VITE_API_ORIGIN || "";
 async function fetchHelper(path) {
-  const res = await fetch(`${import.meta.env.VITE_API_ORIGIN || ""}${path}`);
+  const res = await fetch(`${apiHost}${path}`);
+  console.log({ apiHost });
   const data = await res.json();
   return data;
 }
