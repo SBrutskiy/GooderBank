@@ -7,8 +7,8 @@
   to = "https://gooder-bank-server.herokuapp.com/"
   status = 200
   force = true # COMMENT: ensure that we always redirect
-  
-  [[redirects]]
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
