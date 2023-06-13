@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 export function NavBar() {
   const ctx = React.useContext(UserContext);
+  function logOut() {
+    ctx.logOut();
+  }
   if (!ctx.selectedUser) {
     return (
       <>
@@ -119,6 +122,13 @@ export function NavBar() {
               >
                 Hello {ctx.selectedUser.name}
               </li>
+              <button
+                className=" btn btn-light"
+                // style={{ marginLeft: "auto", marginRight: "2px" }}
+                onClick={logOut}
+              >
+                logout
+              </button>
             </ul>
           </div>
         </nav>

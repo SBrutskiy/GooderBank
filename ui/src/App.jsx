@@ -34,8 +34,6 @@ function NoMatch() {
 }
 
 function App() {
-  const [selectedUserIndex, setSelectedUserIndex] = React.useState(null);
-  const [allUsers, setAllUsers] = React.useState([]);
   const [transactions, setTransactions] = React.useState([]);
   const [selectedUser, setSelectedUser] = React.useState(null);
 
@@ -67,7 +65,10 @@ function App() {
 
     setSelectedUser(data);
   }
-
+  function logOut() {
+    setSelectedUser(null);
+    localStorage.removeItem("userId");
+  }
   async function handleLogin(user) {
     const data = await fetchHelper(
       `/api/account/login/${user.email}/${user.password}`
@@ -100,6 +101,7 @@ function App() {
         handleDeposit,
         handleWithdraw,
         handleLogin,
+        logOut,
       }}
     >
       <Router>
