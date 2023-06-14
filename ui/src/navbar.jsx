@@ -107,7 +107,7 @@ export function NavBar() {
                 Balance
               </Link>
             </li> */}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link
                   title="Use this page to see all the accounts"
                   className="nav-link"
@@ -115,7 +115,7 @@ export function NavBar() {
                 >
                   AllData
                 </Link>
-              </li>
+              </li> */}
               <li
                 className="navbar-brand mr-sm-2"
                 style={{ marginLeft: "auto", marginRight: "10px" }}
